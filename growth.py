@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import os
 from io import BytesIO
-import plotly.express as px
 
 st.set_page_config(page_title="Data Sweeper", layout='wide')
 
@@ -43,7 +42,7 @@ if uploaded_files:
         st.dataframe(df.head())
 
         # Data cleaning options
-        st.subheader("🛠️ Data Cleaning Options")
+        st.subheader("🛠 Data Cleaning Options")
         if st.checkbox(f"Clean data for {file.name}"):
             col1, col2 = st.columns(2)
 
@@ -66,12 +65,7 @@ if uploaded_files:
         # Data visualization
         st.subheader("📊 Data Visualization")
         if st.checkbox(f"Show visualization for {file.name}"):
-            numeric_cols = df.select_dtypes(include=['number'])
-            if not numeric_cols.empty:
-                fig = px.bar(df, x=numeric_cols.columns[0], y=numeric_cols.columns[1], title=f"Bar Chart for {file.name}")
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.write("No numeric columns available for visualization.")
+            st.bar_chart(df.select_dtypes(include=['number']).iloc[:, :2])
 
         # Conversion options
         st.subheader("🔁 Conversion Options")
