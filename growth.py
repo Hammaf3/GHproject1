@@ -42,7 +42,7 @@ if uploaded_files:
         st.dataframe(df.head())
 
         # Data cleaning options
-        st.subheader("🛠️ Data Cleaning Options")
+        st.subheader("🛠 Data Cleaning Options")
         if st.checkbox(f"Clean data for {file.name}"):
             col1, col2 = st.columns(2)
 
@@ -90,14 +90,3 @@ if uploaded_files:
             )
 
 st.success("🎉 All files processed successfully!")
-
-
-
-
-
-
-
-
-
-
-
